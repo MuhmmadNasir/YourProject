@@ -1,3 +1,8 @@
+<! get testing changes made in files real time well oriented changes -->
+
+<?php echo "hello world "; ?>
+
+
  <?php //include("auth.php"); //include auth.php file on all secure pages ?>
   <?php //include("logedinHeader.php"); //include file on all secure pages ?>
   <?php include("mainHeader.php"); //include file on all secure pages ?>
@@ -8,11 +13,11 @@
 <meta charset="utf-8">
 <title>Welcome Home</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  
+
   <!-- Google Ajax Support -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
- 
-  <!-- BootStrap CDN --> 
+
+  <!-- BootStrap CDN -->
   <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
@@ -20,7 +25,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
 
 <!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script> 
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
  <!-- custom Styling -->
   <link rel="stylesheet" href="Styles/WebStore.css">
 
@@ -52,11 +57,11 @@
 
 </head>
 <body id="signinHomebody" >
-  
- 
+
+
     <div >
 
-    
+
           <div id="page-wrapper">
 
             <div class="container-fluid">
@@ -79,8 +84,8 @@
                                 <h3 class="panel-title"><i class="fa fa-th-large" aria-hidden="true"></i> Product</h3>
                             </div>
                             <div class="panel-body">
-                                <div id="morris-area-chart"> 
-                                
+                                <div id="morris-area-chart">
+
                                 <?Php
 
                                     $getid=$_GET['id'];
@@ -89,47 +94,47 @@
 
                                     $sql = "SELECT * From products where productid =  '$getid'  ";
 
-                                    
-                                        
-                                     
+
+
+
                                     $result = mysql_query($sql) or die(mysql_error());
-                                     
+
                                      echo '<div class="table-responsive">';
                                         echo '<table class="table table-bordered">';
-                                                                        
+
                                            echo '<tr class="tableHeaderColor">
-                                                     
+
                                                       <th>Product</th>
                                                       <th>Name</th>
                                                       <th>Price(<i class="fa fa-usd" aria-hidden="true"></i>)</th>
                                                       <th>ProductDescription</th>
                                                       <th>Add  Cart</th>
                                                       <th>View Cart</th>
-                                                      
+
                                                      </tr>';
-                                                     
-                                                    
-                                                   
+
+
+
                                         $row = mysql_fetch_array($result);
-                                        
-                                       
+
+
                                          echo '<tr>';
-                                          
+
                                             echo '<td> <a href="#"> <img src="'.$row['productimage'] .'" class="viewImage"/></td>';
                                              echo '<td>'.$row['productname'].'</td>';
-                                               echo '<td>'.$row['productprice'].'</td>'; 
+                                               echo '<td>'.$row['productprice'].'</td>';
                                                echo '<td>'.$row['productdetail'].'</td>';
                                                 echo '<td> <a href="customerAddCart.php?page=product&action=add&id='.$row['productid'].'" class="btn btn-success btn-lg" >Add Cart </a></td>';
 
                                                 echo '<td> <a href="customerCart.php" class="btn btn-success btn-lg" >View Cart </a></td>';
-                                                
-                                               
+
+
 
                                                   echo '</tr>';
-                                                      
-                                        
 
-                                          
+
+
+
                                         echo '<table>';
 
                                         echo '</div>';
@@ -139,7 +144,7 @@
 
 
                           <!-- Add Comment box  -->
-<!-- 
+<!--
                   <?php
                      $adminnotallowid="SELECT productadmin From products Where productid='$getid'";
                       $result = mysql_query($adminnotallowid) or die(mysql_error());
@@ -158,7 +163,7 @@
 
                      <div class="triangle"></div>
                      <br/>
-                    
+
                     <div>
 
                   <?php
@@ -179,7 +184,7 @@
 
 
 
-    
+
 
 
                   <!-- comments dispaly code -->
@@ -189,42 +194,42 @@
                      $fetchreviews="SELECT * From reviews Where reviewproductid='$getid'";
                       $result = mysql_query($fetchreviews) or die(mysql_error());
 
-                                            
+
                        $admin=" superadmin";
                       $product_admin=" productadmin";
-                                           
-                       
+
+
                     // While loop start
                   while ($row = mysql_fetch_array($result)){
                        $reviewid=$row['reviewid'];
                         $userid=$row['U_Id'];
-                         $imagepath="SELECT ImagePath From users where id='$userid'"; 
+                         $imagepath="SELECT ImagePath From users where id='$userid'";
                           $results = mysql_query($imagepath) or die(mysql_error());
                           $imagepath = mysql_fetch_array($results);
-                           
+
                    ?>
-                   
-                  
+
+
                   <div class="bubble-list ">
                   <div class="bubblelistStyle">
                     <div class="bubble clearfix">
                      <img  src="<?php echo $imagepath['ImagePath']; ?>"  />
 
                      <div class="bubble-content ">
-                        
+
                       <?php echo $row['reviewdetail']; ?>
 
                      <div class="triangle"></div>
                      <br/>
-                      
+
                     </div>
 
                     </div>
                       </div>
                         </div>
 
-                  
-                    
+
+
                   <?php
                     }  // while loop ending..
                     ?>
@@ -268,15 +273,15 @@ if(isset($_GET['action']) && $_GET['action']=="add"){
   $id=intval($_GET['id']);
   if(isset($_SESSION['cart'][$id])){
     $_SESSION['cart'][$id]['quantity']++;
-    
+
   }else{
     $sql_p="SELECT * FROM products WHERE productid= '$getid' ";
     $query_p=mysql_query($sql_p);
     if(mysql_num_rows($query_p)!=0){
-      
+
       $row_p=mysql_fetch_array($query_p);
       $_SESSION['cart'][$row_p['productid']]=array("quantity" => 1, "price" => $row_p['productprice']);
-      
+
     }else{
       $message="Product ID is invalid";
     }
